@@ -1,5 +1,5 @@
 1 gtest output 改成MD链接
 2 pyboolean---》依赖于cgal
 3 igs --》指定python库版本，最终使用一个文件pyigs.pyd
-4 cgal -->拷贝lib和dll
+4 cgal -->拷贝lib和dll,以及auxial gmp， mpfr
 lib_boolean 需要关掉编译优化选项（因为模板问题）且需要添加lib（mpir.lib 在cord中）
