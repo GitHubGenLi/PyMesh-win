@@ -11,13 +11,13 @@
 
 set(QHULL_MAJOR_VERSION 6)
 
-if(QHULL_USE_STATIC)
+#if(QHULL_USE_STATIC)
   set(QHULL_RELEASE_NAME qhullstatic)
   set(QHULL_DEBUG_NAME qhullstatic_d)
-else(QHULL_USE_STATIC)
-  set(QHULL_RELEASE_NAME qhull qhull${QHULL_MAJOR_VERSION})
-  set(QHULL_DEBUG_NAME qhull_d qhull${QHULL_MAJOR_VERSION}_d qhull_d${QHULL_MAJOR_VERSION})
-endif(QHULL_USE_STATIC)
+#else(QHULL_USE_STATIC)
+#  set(QHULL_RELEASE_NAME qhull qhull${QHULL_MAJOR_VERSION})
+#  set(QHULL_DEBUG_NAME qhull_d qhull${QHULL_MAJOR_VERSION}_d qhull_d${QHULL_MAJOR_VERSION})
+#endif(QHULL_USE_STATIC)
 
 find_file(QHULL_HEADER
           NAMES libqhull/libqhull.h qhull.h
@@ -26,7 +26,7 @@ find_file(QHULL_HEADER
           "${QHULL_ROOT}" "$ENV{QHULL_ROOT}" "${QHULL_INCLUDE_DIR}"
           PATHS
           ${PROJECT_SOURCE_DIR}/python/pymesh/third_party/include/
-          "$ENV{PROGRAMFILES}/QHull" "$ENV{PROGRAMW6432}/QHull" 
+          "$ENV{PROGRAMFILES}/QHull" "$ENV{PROGRAMW6432}/QHull" "C:\\third_party\\qhull\\include" 
           PATH_SUFFIXES qhull src/libqhull libqhull include)
 
 set(QHULL_HEADER "${QHULL_HEADER}" CACHE INTERNAL "QHull header" FORCE )
@@ -46,7 +46,7 @@ else(QHULL_HEADER)
 endif(QHULL_HEADER)
 
 set(QHULL_INCLUDE_DIR "${QHULL_INCLUDE_DIR}" CACHE PATH "QHull include dir." FORCE)
-
+message(${QHULL_RELEASE_NAME})
 find_library(QHULL_LIBRARY 
              NAMES ${QHULL_RELEASE_NAME}
              HINTS
@@ -54,7 +54,7 @@ find_library(QHULL_LIBRARY
              "${QHULL_ROOT}" "$ENV{QHULL_ROOT}"
              PATHS
              ${PROJECT_SOURCE_DIR}/python/pymesh/third_party/lib/
-             "$ENV{PROGRAMFILES}/QHull" "$ENV{PROGRAMW6432}/QHull" 
+             "$ENV{PROGRAMFILES}/QHull" "$ENV{PROGRAMW6432}/QHull" "C:\\third_party\\qhull\\lib" 
              PATH_SUFFIXES project build bin lib)
 
 find_library(QHULL_LIBRARY_DEBUG 

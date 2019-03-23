@@ -236,7 +236,7 @@ bool STLParser::parse_ascii_vertex(char* line) {
 }
 
 bool STLParser::parse_binary(const std::string& filename) {
-    std::ifstream fin(filename.c_str());
+    std::ifstream fin(filename.c_str(), std::ios::binary);
     if (!fin.is_open()) {
         std::stringstream err_msg;
         err_msg << "failed to open file \"" << filename << "\"";
@@ -311,6 +311,7 @@ bool STLParser::parse_binary(const std::string& filename) {
         m_faces.push_back(face);
 
         assert(fin.good());
+		
         if (!fin.good()) {
             std::stringstream err_msg;
             err_msg << "Failed to parse face " << i << " from STL file";
